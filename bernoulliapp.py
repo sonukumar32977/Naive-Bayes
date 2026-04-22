@@ -4,7 +4,7 @@ import pandas as pd
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
-    page_title="SMS Spam Detector",
+    page_title="Twitter Sentiment",
     page_icon="📩",
     layout="centered"
 )
@@ -31,8 +31,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------- HEADER ----------------
-st.title("📩 SMS Spam Detection System")
-st.markdown("Detect whether a message is **Spam or Not Spam** using Machine Learning.")
+st.title("📩 Twitter Sentiment Analysis")
+st.markdown("Detect whether a message is **Positive Popularity or Negative Popularity** using Machine Learning.")
 
 # ---------------- SIDEBAR ----------------
 st.sidebar.title("📌 About App")
@@ -40,7 +40,7 @@ st.sidebar.info("""
 This app uses **Bernoulli Naive Bayes** model.
 
 ### How to use:
-1. Enter your SMS  
+1. Enter your Tweet  
 2. Click Analyze  
 3. View prediction  
 
@@ -51,38 +51,38 @@ This app uses **Bernoulli Naive Bayes** model.
 """)
 
 # ---------------- INPUT ----------------
-sms_input = st.text_area(
-    "✉️ Enter your message:",
+Tweet_input = st.text_area(
+    "✉️ Enter your Tweet:",
     height=150,
-    placeholder="Type your SMS here..."
+    placeholder="Type your Tweet here..."
 )
 
 # ---------------- BUTTON ----------------
 if st.button("🔍 Analyze Message"):
 
-    if sms_input.strip() == "":
-        st.warning("⚠️ Please enter a message")
+    if Tweet_input.strip() == "":
+        st.warning("⚠️ Please enter a Tweet")
     else:
         # Transform input
-        transformed_sms = vectorizer.transform([sms_input])
+        transformed_Tweet = vectorizer.transform([Tweet_input])
 
         # Prediction
-        prediction = model.predict(transformed_sms)[0]
-        prob = model.predict_proba(transformed_sms)[0]
+        prediction = model.predict(transformed_Tweet)[0]
+        prob = model.predict_proba(transformed_Tweet)[0]
 
         st.markdown("---")
 
         # ---------------- RESULT ----------------
-        if prediction == 1:
-            st.markdown("### 🚨 Spam Detected")
-            st.error("This message looks like SPAM!")
+        if prediction == 0:
+            st.markdown("### 🚨 Negative Tweet")
+            st.error("This message looks like Negative!")
         else:
             st.markdown("### ✅ Safe Message")
-            st.success("This message is NOT spam.")
+            st.success("This message is Postive.")
 
         # ---------------- PROBABILITY GRAPH ----------------
         df = pd.DataFrame({
-            "Category": ["Not Spam", "Spam"],
+            "Category": ["Negative", "Postive"],
             "Probability": prob
         })
 
