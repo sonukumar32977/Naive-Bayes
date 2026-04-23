@@ -36,18 +36,24 @@ Naive-Bayes/
 * Assumes data follows a normal (Gaussian) distribution
 * Common in datasets like medical data or numerical features
 * Diabetes risk Prediction
+* Project link 👇
+* https://skdiabetes.streamlit.app/
 
 ### 2. Bernoulli Naive Bayes
 
 * Used for binary/boolean features (0 or 1)
 * Works well for text classification with binary word occurrence
 * Twitter Sentiment Analysis
+* Project link 👇
+* https://sktwittersentiment.streamlit.app/
 
 ### 3. Multinomial Naive Bayes
 
 * Used for discrete count data
 * Commonly applied in NLP tasks like spam detection and document classification
 * Email Spam Detection
+* Project link 👇
+* https://skspam.streamlit.app/
 
 ---
 
